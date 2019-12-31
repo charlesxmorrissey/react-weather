@@ -1,10 +1,10 @@
-# Webpack React Template
+# React Weather
 
 ## Build Setup
 
 ``` bash
 # Clone the repo
-git clone https://github.com/charlesxmorrissey/webpack-react-template.git
+git clone https://github.com/charlesxmorrissey/react-weather.git
 
 # Install dependencies
 yarn
