@@ -30,9 +30,9 @@ AppContainer.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
+  data: getWeatherData(state),
   error: getWeatherError(state),
   pending: getWeatherPending(state),
-  data: getWeatherData(state),
 })
 
 const mapDispatchToProps = (dispatch) =>
