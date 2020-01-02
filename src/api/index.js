@@ -52,7 +52,7 @@ class DarkSkyAPIWrapper {
     return this
   }
 
-  // not on currently requests
+  // Not on currently requests
   extendHourly(param) {
     if (!param) {
       this.query.extend = 'hourly'
@@ -70,8 +70,6 @@ class DarkSkyAPIWrapper {
       this.proxy && this.proxy !== true
         ? this.proxy
         : `${this.apiURL}/${this.apiKey}`
-
-    console.log('baseUrl::', baseUrl)
 
     this.url = `${baseUrl}/${this._latitude},${this._longitude}`
     this._time = this._time ? (this.url += `,${this._time}`) : this.url

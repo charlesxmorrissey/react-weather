@@ -43,7 +43,6 @@ class DarkSkyApi {
    * @param {object} position - containing geo latitude and longitude
    */
   position({ latitude, longitude }) {
-    console.log('latitude', latitude, 'longitude', longitude)
     this.darkSkyApi.latitude(latitude).longitude(longitude)
     this.initialized = true
 
