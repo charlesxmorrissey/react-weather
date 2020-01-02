@@ -6,6 +6,9 @@
 # Clone the repo
 git clone https://github.com/charlesxmorrissey/react-weather.git
 
+# Copy `.env.example` to `.env` and update environment variables:
+cp .env.example .env
+
 # Install dependencies
 yarn
 

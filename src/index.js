@@ -6,7 +6,7 @@ import App from '@/containers'
 import DarkSkyApi from '@/utils/DarkSkyApi'
 import configureStore from '@/store'
 
-import '@/assets/css/base.css'
+import '@/styles/base.css'
 
 const store = configureStore()
 

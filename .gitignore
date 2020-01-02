@@ -5,7 +5,11 @@ yarn-debug.log*
 yarn-error.log*
 .idea
 .vscode
-.env*
+
+# Dotenv
+.env
+.env.*
+!.env.example
 
 # dependencies
 node_modules/
