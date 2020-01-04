@@ -7,7 +7,11 @@ import { connect } from 'react-redux'
 import fetchWeatherAction from '@/utils/fetchWeather'
 import App from '@/components/App'
 
-import { getWeatherData, getWeatherPending, getWeatherError } from '@/selectors'
+import {
+  selectWeatherData,
+  selectWeatherError,
+  selectWeatherPending,
+} from '@/selectors'
 
 class AppContainer extends Component {
   componentDidMount() {
@@ -30,9 +34,9 @@ AppContainer.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-  data: getWeatherData(state),
-  error: getWeatherError(state),
-  pending: getWeatherPending(state),
+  data: selectWeatherData(state),
+  error: selectWeatherError(state),
+  pending: selectWeatherPending(state),
 })
 
 const mapDispatchToProps = (dispatch) =>
