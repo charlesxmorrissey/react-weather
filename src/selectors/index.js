@@ -1,18 +1,18 @@
 import { createSelector } from 'reselect'
 
-const getWeather = (state) => state
+const selectWeather = (state) => state
 
 export const selectWeatherData = createSelector(
-  getWeather,
+  selectWeather,
   (state) => state.weather.data
 )
 
 export const selectWeatherPending = createSelector(
-  getWeather,
+  selectWeather,
   (state) => state.pending
 )
 
 export const selectWeatherError = createSelector(
-  getWeather,
+  selectWeather,
   (state) => state.error
 )
