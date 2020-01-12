@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import { bindActionCreators } from 'redux'
@@ -13,18 +13,11 @@ import {
   selectWeatherPending,
 } from '@/selectors'
 
-class AppContainer extends Component {
-  componentDidMount() {
-    const { fetchWeather } = this.props
-
+const AppContainer = ({ data, fetchWeather, pending }) => {
+  useEffect(() => {
     fetchWeather()
-  }
-
-  render() {
-    const { data, pending } = this.props
-
-    return !pending ? <App data={data} /> : null
-  }
+  }, [])
+  return !pending ? <App data={data} /> : null
 }
 
 AppContainer.propTypes = {
