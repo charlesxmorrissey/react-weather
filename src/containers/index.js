@@ -14,9 +14,7 @@ import {
 } from '@/selectors'
 
 const AppContainer = ({ data, fetchWeather, pending }) => {
-  useEffect(() => {
-    fetchWeather()
-  }, [])
+  useEffect(() => fetchWeather(), [])
   return !pending ? <App data={data} /> : null
 }
 
