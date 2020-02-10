@@ -13,7 +13,7 @@ const AppContainer = () => {
 
   useEffect(() => {
     dispatch(fetchWeather())
-  }, [dispatch])
+  }, [])
 
   return !isLoading ? <App data={weatherData} /> : null
 }
