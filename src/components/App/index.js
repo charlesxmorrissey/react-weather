@@ -1,32 +1,21 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { BACKGROUND_COLOR_MAP } from '@/constants'
+import fetchWeather from '@/utils/fetchWeather'
+import App from './App'
 
-import styles from './App.css'
+import { selectWeatherData, selectWeatherLoading } from '@/store/selectors'
 
-const App = ({ data }) => {
-  const { icon, summary, temperature } = data
-  const bgStyle = {
-    backgroundColor:
-      BACKGROUND_COLOR_MAP[icon] || BACKGROUND_COLOR_MAP['default'],
-  }
+const AppContainer = () => {
+  const dispatch = useDispatch()
+  const isLoading = useSelector(selectWeatherLoading())
+  const weatherData = useSelector(selectWeatherData())
 
-  return icon ? (
-    <main className={styles.app} style={bgStyle}>
-      <h1 className={styles.appTitle}>
-        {summary} ({icon}) &mdash; {Math.round(temperature)}&deg;
-      </h1>
-    </main>
-  ) : null
+  useEffect(() => {
+    dispatch(fetchWeather())
+  }, [dispatch])
+
+  return !isLoading ? <App data={weatherData} /> : null
 }
 
-App.propTypes = {
-  data: PropTypes.shape({
-    icon: PropTypes.string,
-    summary: PropTypes.string,
-    temperature: PropTypes.number,
-  }),
-}
-
-export default App
+export default AppContainer

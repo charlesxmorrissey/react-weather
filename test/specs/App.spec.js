@@ -2,6 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from '@/components/App'
 
+jest.mock('react-redux', () => ({
+  useDispatch: () => jest.fn(),
+  useSelector: () => jest.fn(),
+}))
+
 const data = { icon: null }
 
 it('renders the component', () => {
