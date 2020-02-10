@@ -4,7 +4,7 @@ import {
   fetchWeatherRequest,
   fetchWeatherSuccess,
   fetchWeatherError,
-} from '@/actions'
+} from '@/store/weather/actions'
 
 const fetchWeather = () => (dispatch) => {
   dispatch(fetchWeatherRequest())

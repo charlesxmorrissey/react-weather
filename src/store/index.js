@@ -1,39 +1,25 @@
-import { applyMiddleware, compose, createStore } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
-import rootReducer from '@/reducers'
-import * as actionCreators from '@/actions'
+import rootReducer from './reducers'
 
-export default function configureStore(preloadedState) {
-  const devExtension = window.__REDUX_DEVTOOLS_EXTENSION__
-  const middlewareEnhancer = applyMiddleware(...[thunk])
+export default function configureStore(initialState = {}) {
+  const middlewares = [thunk]
+  let enhancer
 
-  const extEnhancer =
-    devExtension &&
-    devExtension({
-      actionCreators,
-      serialize: true,
-      trace: true,
-    })
-
-  const enhancers = [middlewareEnhancer, extEnhancer]
-  const composedEnhancers = compose(...enhancers)
-
-  if (!extEnhancer) {
-    console.warn(
-      'Install Redux DevTools Extension to inspect the app state: ' +
-        'https://github.com/zalmoxisus/redux-devtools-extension#installation'
-    )
+  if (process.env.NODE_ENV !== 'production') {
+    enhancer = composeWithDevTools(applyMiddleware(...middlewares))
+  } else {
+    enhancer = applyMiddleware(...middlewares)
   }
 
-  const store = createStore(rootReducer, preloadedState, composedEnhancers)
+  const store = createStore(rootReducer, initialState, enhancer)
 
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers.
-    module.hot.accept('@/reducers', () => {
-      store.replaceReducer(require('@/reducers').default)
-    })
+  // Enable Webpack hot module replacement for reducers.
+  if (process.env.NODE_ENV !== 'production' && module.hot) {
+    module.hot.accept('./reducers', () => store.replaceReducer(rootReducer))
   }
 
-  return store
+  return { ...store }
 }

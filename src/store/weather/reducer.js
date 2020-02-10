@@ -2,12 +2,12 @@ import {
   FETCH_WEATHER_REQUEST,
   FETCH_WEATHER_SUCCESS,
   FETCH_WEATHER_ERROR,
-} from '@/constants'
+} from '@/store/actionTypes'
 
 const initialState = {
   data: {},
   error: null,
-  pending: false,
+  isLoading: false,
 }
 
 export const weatherData = (state = initialState, action) => {
@@ -15,20 +15,20 @@ export const weatherData = (state = initialState, action) => {
     case FETCH_WEATHER_REQUEST:
       return {
         ...state,
-        pending: true,
+        isLoading: true,
       }
 
     case FETCH_WEATHER_SUCCESS:
       return {
         ...state,
-        pending: false,
+        isLoading: false,
         data: action.data,
       }
 
     case FETCH_WEATHER_ERROR:
       return {
         ...state,
-        pending: false,
+        isLoading: false,
         error: action.error,
       }
 

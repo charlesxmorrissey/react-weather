@@ -10,24 +10,24 @@ import App from '@/components/App'
 import {
   selectWeatherData,
   selectWeatherError,
-  selectWeatherPending,
-} from '@/selectors'
+  selectWeatherLoading,
+} from '@/store/selectors'
 
-const AppContainer = ({ data, fetchWeather, pending }) => {
+const AppContainer = ({ data, fetchWeather, isLoading }) => {
   useEffect(() => fetchWeather(), [])
-  return !pending ? <App data={data} /> : null
+  return !isLoading ? <App data={data} /> : null
 }
 
 AppContainer.propTypes = {
   data: PropTypes.object,
   fetchWeather: PropTypes.func,
-  pending: PropTypes.bool,
+  isLoading: PropTypes.bool,
 }
 
 const mapStateToProps = (state) => ({
   data: selectWeatherData(state),
   error: selectWeatherError(state),
-  pending: selectWeatherPending(state),
+  isLoading: selectWeatherLoading(state),
 })
 
 const mapDispatchToProps = (dispatch) =>
