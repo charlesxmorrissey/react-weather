@@ -4,7 +4,7 @@ import {
   FETCH_WEATHER_ERROR,
 } from '@/store/actionTypes'
 
-export const fetchWeatherRequest = () => ({
+export const fetchWeather = () => ({
   type: FETCH_WEATHER_REQUEST,
 })
 

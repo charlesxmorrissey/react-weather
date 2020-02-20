@@ -1,11 +1,13 @@
 import { applyMiddleware, createStore } from 'redux'
+import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import thunk from 'redux-thunk'
 
 import rootReducer from './reducers'
 
 export default function configureStore(initialState = {}) {
-  const middlewares = [thunk]
+  const sagaMiddleware = createSagaMiddleware()
+  const middlewares = [sagaMiddleware]
+
   let enhancer
 
   if (process.env.NODE_ENV !== 'production') {
@@ -21,5 +23,8 @@ export default function configureStore(initialState = {}) {
     module.hot.accept('./reducers', () => store.replaceReducer(rootReducer))
   }
 
-  return { ...store }
+  return {
+    ...store,
+    runSaga: sagaMiddleware.run,
+  }
 }

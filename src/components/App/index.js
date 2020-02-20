@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import fetchWeather from '@/utils/fetchWeather'
-import App from './App'
-
+import { fetchWeather } from '@/store/weather/actions'
 import { selectWeatherData, selectWeatherLoading } from '@/store/selectors'
+
+import App from './App'
 
 const AppContainer = () => {
   const dispatch = useDispatch()
@@ -13,7 +13,7 @@ const AppContainer = () => {
 
   useEffect(() => {
     dispatch(fetchWeather())
-  }, [])
+  }, [dispatch])
 
   return !isLoading ? <App data={weatherData} /> : null
 }

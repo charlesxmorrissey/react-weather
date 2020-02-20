@@ -2,7 +2,7 @@ import fetchJsonp from 'fetch-jsonp'
 import fetch from 'isomorphic-fetch'
 import queryString from 'query-string'
 
-class DarkSkyAPIWrapper {
+class DarkSkyAPI {
   constructor(apiKey, proxy) {
     this.apiKey = apiKey || ''
     this.apiURL = 'https://api.darksky.net/forecast'
@@ -110,4 +110,4 @@ class DarkSkyAPIWrapper {
   }
 }
 
-export default DarkSkyAPIWrapper
+export default DarkSkyAPI

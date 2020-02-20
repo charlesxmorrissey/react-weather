@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   data: {},
-  error: null,
+  errors: [],
   isLoading: false,
 }
 
@@ -19,17 +19,20 @@ export const weatherData = (state = initialState, action) => {
       }
 
     case FETCH_WEATHER_SUCCESS:
+      const { data } = action
+      console.log('FETCH_WEATHER_SUCCESS::', data)
+
       return {
         ...state,
         isLoading: false,
-        data: action.data,
+        data,
       }
 
     case FETCH_WEATHER_ERROR:
       return {
         ...state,
         isLoading: false,
-        error: action.error,
+        errors: [...state.errors, action.error],
       }
 
     default:

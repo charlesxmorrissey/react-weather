@@ -3,14 +3,14 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 
 import App from '@/components/App'
-import DarkSkyApi from '@/utils/DarkSkyApi'
 import configureStore from '@/store'
+import rootSaga from '@/sagas'
 
 import '@/styles/base.css'
 
 const store = configureStore()
 
-DarkSkyApi.apiKey = process.env.DARK_SKY_SECRET_KEY
+store.runSaga(rootSaga)
 
 render(
   <Provider store={store}>
