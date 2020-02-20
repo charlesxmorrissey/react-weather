@@ -92,6 +92,7 @@ class DarkSkyAPI {
     this.generateReqUrl()
 
     const query = this.proxy ? fetch(this.url) : fetchJsonp(this.url)
+    console.log('DarkSkyAPI get query::', query)
 
     return query
       .then((response) => response.json())

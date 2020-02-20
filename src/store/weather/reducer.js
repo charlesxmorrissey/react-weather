@@ -1,7 +1,7 @@
 import {
-  FETCH_WEATHER_REQUEST,
-  FETCH_WEATHER_SUCCESS,
-  FETCH_WEATHER_ERROR,
+  WEATHER_REQUEST,
+  WEATHER_SUCCESS,
+  WEATHER_ERROR,
 } from '@/store/actionTypes'
 
 const initialState = {
@@ -10,17 +10,19 @@ const initialState = {
   isLoading: false,
 }
 
-export const weatherData = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_WEATHER_REQUEST:
+    case WEATHER_REQUEST:
+      console.log('WEATHER_REQUEST::', action)
+
       return {
         ...state,
         isLoading: true,
       }
 
-    case FETCH_WEATHER_SUCCESS:
+    case WEATHER_SUCCESS:
       const { data } = action
-      console.log('FETCH_WEATHER_SUCCESS::', data)
+      console.log('WEATHER_SUCCESS::', data)
 
       return {
         ...state,
@@ -28,7 +30,7 @@ export const weatherData = (state = initialState, action) => {
         data,
       }
 
-    case FETCH_WEATHER_ERROR:
+    case WEATHER_ERROR:
       return {
         ...state,
         isLoading: false,

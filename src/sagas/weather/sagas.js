@@ -1,23 +1,20 @@
 import { call, put } from 'redux-saga/effects'
+import DarkSkyAPI from 'dark-sky-skeleton'
 
-// import DarkSkyApi from '@/utils/DarkSkyApi'
-import DarkSkyAPI from '@/api'
+import { fetchWeatherSuccess, fetchWeatherError } from '@/store/weather/actions'
 
-import {
-  fetchWeatherRequest,
-  fetchWeatherSuccess,
-  fetchWeatherError,
-} from '@/store/weather/actions'
+const api = new DarkSkyAPI(process.env.DARK_SKY_SECRET_KEY)
 
-const apiKey = process.env.DARK_SKY_SECRET_KEY
-const api = new DarkSkyAPI(apiKey)
+// 40.678177
+// -73.944160
 
 export function* fetchWeather() {
   try {
-    // const query = `https://api.darksky.net/forecast/${apiKey}`
-    // const data = yield call(api, query)
-    // console.log('data::', data)
-    yield put(fetchWeatherSuccess(api))
+    // const lat = yield call(api.latitude, '40.678177')
+    // const long = yield call(api.longitude, '-73.944160')
+    yield put(fetchWeatherSuccess(api.latitude('40.678177')))
+    yield put(fetchWeatherSuccess(api.longitude('-73.944160')))
+    yield put(fetchWeatherSuccess(api.get()))
   } catch (error) {
     yield put(fetchWeatherError(error))
   }

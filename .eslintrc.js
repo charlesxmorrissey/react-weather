@@ -4,7 +4,7 @@ module.exports = {
   root: true,
   parser: 'babel-eslint',
   extends: ['standard', 'standard-react', 'prettier', 'prettier/react'],
-  plugins: ['react', 'prettier', 'jsx-a11y', 'import'],
+  plugins: ['react', 'react-hooks', 'prettier', 'jsx-a11y', 'import'],
 
   env: {
     browser: true,
@@ -37,6 +37,9 @@ module.exports = {
         ignoreReadBeforeAssign: false,
       },
     ],
+
+    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+    'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
 
     'jsx-a11y/accessible-emoji': 'warn',
     'jsx-a11y/alt-text': 'warn',

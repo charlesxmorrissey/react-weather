@@ -1,19 +1,19 @@
 import {
-  FETCH_WEATHER_REQUEST,
-  FETCH_WEATHER_SUCCESS,
-  FETCH_WEATHER_ERROR,
+  WEATHER_REQUEST,
+  WEATHER_SUCCESS,
+  WEATHER_ERROR,
 } from '@/store/actionTypes'
 
-export const fetchWeather = () => ({
-  type: FETCH_WEATHER_REQUEST,
+export const fetchWeatherRequest = () => ({
+  type: WEATHER_REQUEST,
 })
 
 export const fetchWeatherSuccess = (data) => ({
-  type: FETCH_WEATHER_SUCCESS,
+  type: WEATHER_SUCCESS,
   data,
 })
 
 export const fetchWeatherError = (error) => ({
-  type: FETCH_WEATHER_ERROR,
+  type: WEATHER_ERROR,
   error,
 })
