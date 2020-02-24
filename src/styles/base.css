@@ -1,7 +1,7 @@
 :root {
-  --bgColor: gold;
-  --fontColor: #000;
-  --mainColor: coral;
+  --white: #fff;
+  --black: #000;
+  --grey-50: rgba(0, 0, 0, .5);
 }
 
 html,
@@ -11,17 +11,17 @@ body {
 }
 
 body {
-  color: var(--fontColor);
+  color: var(--black);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   margin: 0;
 }
 
 a {
-  color: rebeccapurple;
+  color: var(--black);
 
   &:hover {
-    color: yellowgreen;
+    text-decoration: underline;
   }
 }
 
