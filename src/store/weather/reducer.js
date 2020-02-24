@@ -13,8 +13,6 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case WEATHER_REQUEST:
-      console.log('WEATHER_REQUEST::', action)
-
       return {
         ...state,
         isLoading: true,
@@ -22,7 +20,6 @@ export default (state = initialState, action) => {
 
     case WEATHER_SUCCESS:
       const { data } = action
-      console.log('WEATHER_SUCCESS::', data)
 
       return {
         ...state,
@@ -31,10 +28,12 @@ export default (state = initialState, action) => {
       }
 
     case WEATHER_ERROR:
+      const { error } = action
+
       return {
         ...state,
         isLoading: false,
-        errors: [...state.errors, action.error],
+        errors: [...state.errors, error],
       }
 
     default:

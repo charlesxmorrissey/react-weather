@@ -1,4 +1,4 @@
-import DarkSkyAPIWrapper from '@/api'
+import DarkSkyAPIWrapper from 'dark-sky-skeleton'
 import { getNavigatorCoords } from 'geo-loc-utils'
 
 const config = {
@@ -71,9 +71,9 @@ class DarkSkyApi {
     if (position) {
       this.position(position)
     } else if (!this.initialized) {
-      return this.loadPosition().then((position) =>
-        this.initialize(position).loadCurrent()
-      )
+      return this.loadPosition().then((position) => {
+        return this.initialize(position).loadCurrent()
+      })
     }
 
     return this.darkSkyApi
@@ -110,7 +110,9 @@ class DarkSkyApi {
   /**
    *  Get browser navigator coords - Promise
    */
-  static loadPosition = (options = {}) => getNavigatorCoords(options)
+  static loadPosition = (options = {}) => {
+    return getNavigatorCoords(options)
+  }
 
   /**
    * Initialize a static instance of weather api with dark sky api key
