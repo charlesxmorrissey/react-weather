@@ -14,12 +14,13 @@ const config = {
 
 class DarkSkyApi {
   /**
-   * @param {string} apiKey - dark sky api key - consider using a proxy
-   * @param {string|boolean} proxy - make request behind proxy to hide
-   *  api key or set to true to indicate caller is server-side
+   * @param {string} apiKey - Darksky API key - consider using a proxy.
+   * @param {string|boolean} proxy - Make request behind proxy to hide.
+   *  API key or set to true to indicate caller is server-side.
    * @param {string} units
    * @param {string} language
-   * @param {func} processor
+   * @param {Function} processor
+   * @constructor
    */
   constructor(apiKey, proxy, language) {
     this.darkSkyApi = new DarkSkyAPIWrapper(apiKey, proxy)
@@ -27,8 +28,8 @@ class DarkSkyApi {
   }
 
   /**
-   * Initialze dark sky api with position data - Chainable
-   * @param {object} position - containing geo latitude and longitude
+   * Initialze Darksky API with position data.
+   * @param {object} position - Contains the geo latitude and longitude.
    * @see DarkSkyApi.getNavigatorCoords
    */
   initialize(position) {
@@ -39,8 +40,8 @@ class DarkSkyApi {
   }
 
   /**
-   * Set dark sky api position data - Chainable
-   * @param {object} position - containing geo latitude and longitude
+   * Set Darksky API position data.
+   * @param {object} position - Containing geo latitude and longitude.
    */
   position({ latitude, longitude }) {
     this.darkSkyApi.latitude(latitude).longitude(longitude)
@@ -50,8 +51,8 @@ class DarkSkyApi {
   }
 
   /**
-   * Set language for response summaries
-   * @param {String} value - language token
+   * Set language for response summaries.
+   * @param {string} value - The language token.
    */
   language(value) {
     if (config.acceptedLanguage.indexOf(value) === -1) {
@@ -64,8 +65,8 @@ class DarkSkyApi {
   }
 
   /**
-   * Get forecasted week of weather
-   * @param {object} [position] - if omitted will use loadPosition
+   * Get the forecasted week of weather.
+   * @param {object} position - If omitted will use loadPosition.
    */
   loadCurrent(position) {
     if (position) {
@@ -85,14 +86,16 @@ class DarkSkyApi {
 
   /**
    * Make response a bit more friendly
-   * @param {object} item - item to process
+   * @param {object} item - Item to process.
    */
   processWeatherItem(item) {
     return item
   }
 
   /**
-   *  Get browser navigator coords - Promise
+   * Get the browser navigator coords.
+   * @param {object} options
+   * @return {Promise}
    */
   loadPosition(options = {}) {
     return DarkSkyApi.loadPosition(options)
@@ -100,7 +103,7 @@ class DarkSkyApi {
 
   static _api
 
-  // allow config and deferring of initialization
+  // Allow config and deferring of initialization.
   static apiKey
   static proxy
   static units
@@ -108,7 +111,8 @@ class DarkSkyApi {
   static postProcessor
 
   /**
-   *  Get browser navigator coords - Promise
+   *  Get browser navigator coords.
+   * @return {Promise}
    */
   static loadPosition = (options = {}) => {
     return getNavigatorCoords(options)
@@ -140,7 +144,7 @@ class DarkSkyApi {
   /**
    * Set language for response summaries - initialize or configure
    *  with api key or proxy first
-   * @param {String} value - language token
+   * @param {String} value the language token.
    */
   static setLanguage(language) {
     this.initialize()
@@ -148,8 +152,9 @@ class DarkSkyApi {
   }
 
   /**
-   * Get today's weather - Promise
-   * @param {object} position - if omitted will use loadPosition
+   * Get today's weather.
+   * @param {object} position - if omitted will use loadPosition.
+   * @return {Promise}
    */
   static loadCurrent(position) {
     this.initialize()

@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { CSSTransition } from 'react-transition-group'
+import classNames from 'classnames'
 
 import { fetchWeatherRequest } from '@/store/weather/actions'
 import { selectWeatherData, selectWeatherLoading } from '@/store/selectors'
@@ -9,7 +11,7 @@ import Loader from '@/components/Loader'
 
 import styles from './App.css'
 
-const AppContainer = () => {
+const App = () => {
   const dispatch = useDispatch()
   const isLoading = useSelector(selectWeatherLoading())
   const weatherData = useSelector(selectWeatherData())
@@ -24,11 +26,22 @@ const AppContainer = () => {
   }, [dispatch])
 
   return (
-    <main className={styles.app} style={bgStyle}>
+    <main
+      className={classNames(styles.app, {
+        [styles.appLoading]: isLoading,
+      })}>
       {!isLoading ? (
-        <h1 className={styles.appTitle}>
-          {summary} ({icon}) &mdash; {Math.round(temperature)}&deg;
-        </h1>
+        <CSSTransition
+          classNames={{ ...styles }}
+          in={!isLoading}
+          timeout={300}
+          appear>
+          <div className={styles.appStage} style={bgStyle}>
+            <h1 className={styles.appTitle}>
+              {summary} ({icon}) &mdash; {Math.round(temperature)}&deg;
+            </h1>
+          </div>
+        </CSSTransition>
       ) : (
         <Loader />
       )}
@@ -36,4 +49,4 @@ const AppContainer = () => {
   )
 }
 
-export default AppContainer
+export default App

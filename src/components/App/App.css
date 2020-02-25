@@ -1,4 +1,9 @@
 .app {
+  height: 100%;
+}
+
+.appLoading,
+.appStage {
   align-items: center;
   display: flex;
   height: 100%;
@@ -20,4 +25,22 @@
   .appTitle {
     font-size: 32px;
   }
+}
+
+/* App transitions */
+.enter,
+.appear {
+  opacity: 0;
+}
+
+.exit,
+.enterActive,
+.appearActive {
+  opacity: 1;
+  transition: opacity var(--duration-default-transition);
+}
+
+.exitActive {
+  opacity: 0;
+  transition: opacity var(--duration-default-transition);
 }
