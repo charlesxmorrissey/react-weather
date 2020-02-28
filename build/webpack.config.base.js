@@ -19,7 +19,7 @@ const webpackConfig = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js'],
     alias: {
       '@': config.appSrc,
     },
