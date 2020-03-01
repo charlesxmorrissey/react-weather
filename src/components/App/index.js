@@ -35,6 +35,7 @@ const App = () => {
           classNames={{ ...styles }}
           in={!isLoading}
           timeout={300}
+          mountOnEnter
           appear>
           <div className={styles.appStage} style={bgStyle}>
             <h1 className={styles.appTitle}>
