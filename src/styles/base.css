@@ -1,10 +1,10 @@
 :root {
- /*
+  /*
    * Base Colors
    * ====================================================================== */
   --white: #fff;
   --black: #000;
-  --grey-50: rgba(0, 0, 0, .5);
+  --grey-50: rgba(0, 0, 0, 0.5);
 
   /*
    * Base Transition Durations

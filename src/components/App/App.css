@@ -13,8 +13,13 @@
 }
 
 .appTitle {
+  background: var(--white);
   font-size: 16px;
   font-weight: 300;
+  padding: 20px;
+  position: absolute;
+  right: 32px;
+  top: 0;
 }
 
 @media screen and (min-width: 400px) {
