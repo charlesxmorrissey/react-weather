@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
         isLoading: true,
       }
 
-    case WEATHER_SUCCESS:
+    case WEATHER_SUCCESS: {
       const { data } = action
 
       return {
@@ -26,8 +26,9 @@ export default (state = initialState, action) => {
         isLoading: false,
         data,
       }
+    }
 
-    case WEATHER_ERROR:
+    case WEATHER_ERROR: {
       const { error } = action
 
       return {
@@ -35,6 +36,7 @@ export default (state = initialState, action) => {
         isLoading: false,
         errors: [...state.errors, error],
       }
+    }
 
     default:
       return state
