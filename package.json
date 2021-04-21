@@ -11,7 +11,7 @@
     "format": "prettier --write '**/*.{css,js}'",
     "lint": "eslint --ext .js build test src",
     "lint:fix": "eslint --fix build test src",
-    "start": "webpack-dev-server --progress --config build/webpack.config.dev.js",
+    "dev": "webpack-dev-server --progress --config build/webpack.config.dev.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },
